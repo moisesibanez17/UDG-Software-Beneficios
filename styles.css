@@ -74,6 +74,27 @@ body {
     z-index: 1;
 }
 
+/* Logos del encabezado (marcas del proyecto) */
+.header .brand-logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 46px 24px 46px; 
+    width: auto; /* respetar atributo width/height si se mantiene, pero forzar un máximo */
+    max-width: 120px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 10px;
+    }
+    .header .brand-logo {
+        max-width: 72px;
+        margin: 8px;
+    }
+    .header h1 { font-size: 1.4em; }
+}
+
 /* Regla unificada para todos los logos usados en tarjetas y listas */
 .logo {
     width: 72px;              /* tamaño base consistente */
