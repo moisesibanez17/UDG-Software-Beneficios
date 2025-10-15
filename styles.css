@@ -1605,6 +1605,15 @@ body::after {
             text-align: left;
         }
 
+        /* Excepción: las filas de detalles deben usar ancho completo sin el padding-left de etiqueta */
+        #softwareTable tr.details-row td {
+            padding-left: 12px; /* padding normal para contenido amplio */
+        }
+
+        #softwareTable tr.details-row td:before {
+            display: none; /* ocultar etiquetas pseudo-generadas en la fila de detalles */
+        }
+
         #softwareTable td:before {
             position: absolute;
             left: 12px;
