@@ -575,11 +575,18 @@ section h2::after {
 }
 
 .expanded-details {
-    padding: 25px;
+    box-sizing: border-box;
+    width: 100%;               /* ocupar todo el ancho del TD */
+    padding: 22px 24px;       /* padding interno consistente */
     border: 3px solid var(--color-primary);
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 12px;
+    margin: 0;                /* quitar márgenes que desplazaban el contenido a la derecha */
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+/* Asegurar que la celda que contiene la fila de detalles no añada padding extra */
+.details-row td {
+    padding: 0;
 }
 
 .details-header {
