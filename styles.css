@@ -607,7 +607,7 @@ section h2::after {
 .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 24px; /* un poco más de espacio entre secciones */
 }
 
 .detail-section {
@@ -616,6 +616,7 @@ section h2::after {
     border-radius: 12px;
     border-left: 5px solid var(--color-primary);
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    min-height: 80px; /* para evitar bloques demasiado cortos */
 }
 
 .detail-section h4 {
@@ -715,7 +716,23 @@ section h2::after {
     }
     
     .download-btn {
-        min-width: 90%;
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 18px;
+        box-sizing: border-box;
+    }
+
+    .details-grid {
+        gap: 18px; /* aumentar separación vertical en móvil */
+    }
+
+    .detail-section {
+        padding: 18px;
+    }
+
+    /* Reducir el espacio reservado por la etiqueta pseudo para evitar solapamientos */
+    #softwareTable td {
+        padding-left: 40%;
     }
 }
 
