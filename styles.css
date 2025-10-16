@@ -182,14 +182,14 @@ section h2 {
 }
 
 section h2::before {
-    content: '⭐';
-    margin-right: 10px;
+    content: '';
+    margin-right: 0;
     font-size: 1.2em;
 }
 
 section h2::after {
-    content: '⭐';
-    margin-left: 10px;
+    content: '';
+    margin-left: 0;
     font-size: 1.2em;
 }
 
@@ -330,7 +330,7 @@ section h2::after {
 }
 
 .card li::before {
-    content: "⭐"; 
+    content: "";
     position: absolute;
     left: 0;
     color: var(--color-primary);
@@ -408,6 +408,59 @@ section h2::after {
     margin: 0 auto;
 }
 
+/* Layout grid: decorative square + form */
+.subscribe-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* narrower column */
+    gap: 1rem;
+    align-items: start;
+}
+
+.subscribe-decor .big-square {
+    width: 100%;
+    height: 220px; /* reduced height to look rectangular */
+    background: linear-gradient(135deg, rgba(255,234,124,1), rgba(255,193,7,1));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 40px rgba(255, 193, 7, 0.18);
+    border: 6px solid rgba(255,245,157,0.6);
+    position: relative;
+}
+
+.subscribe-decor .big-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: rgba(34,34,34,0.9);
+    text-align: center;
+    padding: 10px 16px;
+}
+
+/* Responsive: hide big square on smaller screens and show compact decor */
+@media (max-width: 920px) {
+    .subscribe-grid { grid-template-columns: 1fr; }
+    /* keep the subscribe-decor container but hide the large square (force) */
+    .subscribe-decor { display: block !important; }
+    .subscribe-decor .big-square { display: none !important; height: 0 !important; visibility: hidden !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+    /* show compact decor */
+    .subscribe-decor .compact-decor { display: flex !important; }
+}
+
+/* Compact decorative strip (hidden by default, shown on small screens) */
+.compact-decor { display: none; }
+.compact-decor .compact-text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(255,243,157,1), rgba(255,213,79,1));
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #222;
+    box-shadow: 0 6px 18px rgba(255,193,7,0.12);
+}
+
 .section-subscribe h2 {
     margin-bottom: 0.25rem;
     font-size: 1.6rem;
@@ -429,17 +482,36 @@ section h2::after {
 
 .subscribe-form-wrapper input[type="email"] {
     flex: 1 1 360px;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.12);
-    font-size: 1rem;
-    outline: none;
-    transition: box-shadow .15s ease, border-color .15s ease;
+    display: block;
+    height: 48px !important;             /* fuerza altura fija */
+    max-height: 48px !important;
+    min-height: 44px;
+    padding: 0.5rem 1rem !important;     /* padding controlado */
+    border-radius: 8px !important;
+    border: 1px solid rgba(0,0,0,0.12) !important;
+    font-size: 1rem !important;
+    line-height: 1.2 !important;      /* línea controlada */
+    box-sizing: border-box !important;
+    outline: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important; /* evita estilos nativos en iOS/Android */
+    transition: box-shadow .15s ease, border-color .15s ease, transform .08s ease;
+    align-self: center;       /* centrar verticalmente dentro del flex */
+    overflow: hidden !important; /* evita que se muestre como caja grande */
+}
+
+/* Desktop: make the input small/focused width so it doesn't take the whole row */
+@media (min-width: 721px) {
+    .subscribe-form-wrapper input[type="email"] {
+        width: 220px;    /* fixed small width on larger screens */
+        flex: 0 0 auto;  /* prevent flex from stretching */
+    }
 }
 
 .subscribe-form-wrapper input[type="email"]:focus {
     box-shadow: 0 6px 18px rgba(38,132,255,0.12);
     border-color: rgba(38,132,255,0.9);
+    transform: translateY(-1px);
 }
 
 .subscribe-form-wrapper .checkbox { display:none; }
@@ -448,12 +520,17 @@ section h2::after {
     background: linear-gradient(180deg,#ffd54a,#ffb300);
     color: #222;
     border: none;
-    padding: 0.72rem 1rem;
+    padding: 0 1rem;
+    height: 48px;
+    min-height: 44px;
     border-radius: 10px;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(255,165,0,0.12);
     transition: transform .12s ease, box-shadow .12s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .subscribe-form-wrapper button.button.primary:hover { transform: translateY(-2px); }
@@ -502,6 +579,21 @@ section h2::after {
     .subscribe-form-wrapper { flex-direction: column; align-items: stretch; }
     .subscribe-form-wrapper input[type="email"] { width: 100%; }
     .subscribe-form-wrapper button.button.primary { width: 100%; }
+    /* Mostrar el decor compacto arriba del formulario en pantallas pequeñas */
+    .subscribe-decor .compact-decor { display: flex; margin-bottom: 0.6rem; }
+}
+
+/* Extra mobile polish for very small screens */
+@media (max-width: 420px) {
+    .section-subscribe { padding: 1.2rem 0.75rem; }
+    .section-subscribe h2 { font-size: 1.2rem; }
+    .subscribe-form-wrapper { padding: 0.8rem; gap: 0.6rem; border-radius: 10px; }
+    .subscribe-form-wrapper input[type="email"] { padding: 0.65rem; font-size: 0.98rem; }
+    .subscribe-form-wrapper button.button.primary { padding: 0.8rem; font-size: 1rem; border-radius: 8px; }
+    .subscribe-form-wrapper .checkbox { display:block; margin-top: 6px; }
+    .subscribe-form-wrapper .checkbox label { font-size: 0.9rem; }
+    .subscribe-msg { font-size: 0.95rem; }
+    .subscribe-decor .compact-decor { margin-bottom: 0.4rem; }
 }
 
 /* ======================================================================
@@ -1247,12 +1339,8 @@ footer {
 }
 
 footer::before {
-    content: '⭐ UDG SOFTWARE BENEFICIOS ⭐';
-    display: block;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--color-primary);
+    content: '';
+    display: none;
 }
 
 /* ======================================================================
