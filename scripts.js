@@ -43,6 +43,35 @@ function toggleDetails(softwareName, buttonElement) {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM cargado, iniciando scripts...');
+    // --- Limpieza cliente: borrar cookies, caches y service workers para evitar contenido cacheado ---
+    (async function clearClientStorageAndUnregisterServiceWorkers(){
+        try {
+            // borrar cookies (establecer expiración pasada)
+            document.cookie.split(';').forEach(function(c) {
+                document.cookie = c.replace(/=.*/, '=;expires=' + new Date(0).toUTCString() + ';path=/');
+            });
+
+            // limpiar localStorage y sessionStorage
+            try { localStorage.clear(); } catch(e){/* no-op */}
+            try { sessionStorage.clear(); } catch(e){/* no-op */}
+
+            // borrar caches (Cache API)
+            if ('caches' in window) {
+                const keys = await caches.keys();
+                await Promise.all(keys.map(k => caches.delete(k)));
+            }
+
+            // unregister service workers
+            if ('serviceWorker' in navigator) {
+                const regs = await navigator.serviceWorker.getRegistrations();
+                await Promise.all(regs.map(r => r.unregister()));
+            }
+
+            console.info('Client caches, cookies and service workers cleared.');
+        } catch (err) {
+            console.warn('Error clearing client storages:', err);
+        }
+    })();
     
     const filterInput = document.getElementById('filterInput');
     const softwareTable = document.getElementById('softwareTable');
