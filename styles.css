@@ -395,6 +395,116 @@ section h2::after {
 }
 
 /* ======================================================================
+   SECCIÓN DE SUSCRIPCIÓN (estilos específicos)
+   ====================================================================== */
+.section-subscribe {
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, rgba(255,250,205,0.95), rgba(255,245,157,0.95));
+    border-top: 1px dashed rgba(0,0,0,0.05);
+}
+
+.section-subscribe .container {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.section-subscribe h2 {
+    margin-bottom: 0.25rem;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+.section-subscribe p { color: #444; margin-bottom: 1rem; }
+
+.subscribe-form-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgba(255,255,255,0.9);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(24,24,24,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.subscribe-form-wrapper input[type="email"] {
+    flex: 1 1 360px;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.12);
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.subscribe-form-wrapper input[type="email"]:focus {
+    box-shadow: 0 6px 18px rgba(38,132,255,0.12);
+    border-color: rgba(38,132,255,0.9);
+}
+
+.subscribe-form-wrapper .checkbox { display:none; }
+
+.subscribe-form-wrapper button.button.primary {
+    background: linear-gradient(180deg,#ffd54a,#ffb300);
+    color: #222;
+    border: none;
+    padding: 0.72rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255,165,0,0.12);
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.subscribe-form-wrapper button.button.primary:hover { transform: translateY(-2px); }
+
+.subscribe-msg {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    min-height: 1.25rem;
+}
+
+/* Button spinner */
+.btn-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.12);
+    border-top-color: rgba(0,0,0,0.35);
+    transform: translateY(1px);
+    opacity: 0; /* hidden by default */
+    transition: opacity .12s ease;
+}
+
+.btn-loading .btn-spinner { opacity: 1; animation: spin .9s linear infinite; }
+.btn-loading .btn-text { opacity: 0.6; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Message icon and animations */
+.subscribe-msg { display: flex; align-items: center; gap: 0.5rem; }
+.msg-icon { width: 18px; height: 18px; display:inline-block; border-radius: 50%; }
+.msg-text { display:inline-block; }
+
+.msg-success { color: #0A7E3C; }
+.msg-success .msg-icon { background: linear-gradient(45deg,#66bb6a,#43a047); box-shadow: 0 4px 12px rgba(67,160,71,0.15); }
+
+.msg-error { color: #9b1c1c; }
+.msg-error .msg-icon { background: linear-gradient(45deg,#ff8a80,#ff5252); box-shadow: 0 4px 12px rgba(255,82,82,0.12); }
+
+.msg-fade-in { animation: popIn .28s cubic-bezier(.2,.8,.2,1); }
+@keyframes popIn { from { transform: translateY(6px); opacity:0 } to { transform: translateY(0); opacity:1 } }
+
+/* Make the layout vertical on small screens */
+@media (max-width: 720px) {
+    .subscribe-form-wrapper { flex-direction: column; align-items: stretch; }
+    .subscribe-form-wrapper input[type="email"] { width: 100%; }
+    .subscribe-form-wrapper button.button.primary { width: 100%; }
+}
+
+/* ======================================================================
    SECCIÓN DE TABLA (Especializado)
    ====================================================================== */
 /* Barras de desplazamiento horizontal removidas para mejor experiencia visual */

@@ -56,6 +56,46 @@
         </div>
     </section>
 
+    <!-- Sección de Suscripción a la lista de difusión -->
+    <section id="suscripcion" class="section-subscribe">
+        <div class="container">
+            <h2>Únete a nuestra lista de difusión</h2>
+            <p>Recibe noticias y beneficios directamente en tu correo institucional.</p>
+
+              <form id="subscribeForm" action="https://script.google.com/macros/s/AKfycbwNE7eomL2tDZqEWcJ5lI3UuEcMs2Hb9h2ZeolvU5LhEevMV0k2_2O9xUFhOtp0FP7e/exec" method="post" target="iframeSub" novalidate>
+                <label for="email">Correo institucional</label>
+                <div class="subscribe-form-wrapper">
+                    <input id="email" name="email" type="email" placeholder="tu@alumnos.udg.mx" required aria-label="Correo institucional">
+
+                    <button type="submit" class="button primary" aria-live="polite">
+                        <span class="btn-text">Suscribirme</span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <!-- honeypot oculto para bots -->
+                <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+                    <label>Si eres humano deja vacío:</label>
+                    <input name="hp" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="checkbox">
+                    <input id="optin" name="optin" type="checkbox" required>
+                    <label for="optin">Acepto recibir correos informativos y ofertas</label>
+                </div>
+
+                <input type="hidden" name="source" value="github-pages">
+
+                <div id="subscribeMsg" class="subscribe-msg" aria-live="polite">
+                    <span class="msg-icon" aria-hidden="true"></span>
+                    <span class="msg-text">&nbsp;</span>
+                </div>
+            </form>
+
+            <iframe name="iframeSub" id="iframeSub" style="display:none;"></iframe>
+        </div>
+    </section>
+
     <!-- Sección de Beneficios por Tiempo Limitado -->
     <section id="tiempo-limitado" class="limited-time-section">
         <div class="limited-time-banner">
@@ -656,6 +696,7 @@
 
     <section id="faq" class="section-faq">
         <h2>❓ Preguntas Frecuentes</h2>
+        <h3>Puedes enviarnos un correo electronico a ayuda@diferente.email ante cualquier duda</h3>
         <details>
             <summary>¿Cómo obtengo mi correo institucional UDG?</summary>
             <p>Se genera automáticamente al obtener tu código de estudiante (SIIAU). Dentro de SIIAU apareceran dos apartados, Correo Google y Correo Office 365, en ambos apareceran tu correo y tu contraseña temporal que debe ser cambiada al iniciar sesión.</p>
