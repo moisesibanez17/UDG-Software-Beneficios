@@ -78,6 +78,4 @@ Si deseas un release formal, puedo crear un tag en Git (por ejemplo `v0.1`) y em
 
 Si detectas errores de contenido o quieres solicitar enlaces/beneficios adicionales, abre un issue en el repositorio o contáctame dentro del repositorio.
 
----
 
-Archivo generado automáticamente: resumen de cambios y guía de uso.
