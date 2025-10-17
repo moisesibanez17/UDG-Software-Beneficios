@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Evitar caching agresivo en clientes: no garantizado pero ayuda durante desarrollo -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software UDG: Licencias y Beneficios Educativos</title>
+    <link rel="icon" type="image/png" href="assets/ICONO.png">
+    <link rel="apple-touch-icon" href="assets/ICONO.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -79,7 +80,7 @@
                 <form id="subscribeForm" action="https://script.google.com/macros/s/AKfycbwNE7eomL2tDZqEWcJ5lI3UuEcMs2Hb9h2ZeolvU5LhEevMV0k2_2O9xUFhOtp0FP7e/exec" method="post" target="iframeSub" novalidate>
                 <label for="email">Correo institucional</label>
                 <div class="subscribe-form-wrapper">
-                    <input id="email" name="email" type="email" placeholder="alumno@alumnos.udg.mx" required aria-label="Correo institucional">
+                    <input id="email" name="email" type="email" placeholder="tu@alumnos.udg.mx" required aria-label="Correo institucional" pattern="^[^\s@]+@alumnos\.udg\.mx$" title="Usa tu correo institucional terminado en @alumnos.udg.mx">
 
                     <button type="submit" class="button primary" aria-live="polite">
                         <span class="btn-text">Suscribirme</span>
